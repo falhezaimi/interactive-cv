@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* System font stack for crisp look */
+html { color-scheme: light; }
+
+a { text-underline-offset: 2px; }

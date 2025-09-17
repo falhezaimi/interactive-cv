@@ -1,0 +1,91 @@
+{
+  "summary": "I am a Computer Science student researcher at Chapman University working in Dr. Josh Fisher’s Remote Sensing and Ecology Lab, under the mentorship of Dr. Gabriela Shirkey. My research bridges artificial intelligence with environmental sustainability and computational biology. I contribute to AUREUM, a multimodel pipeline for ecological modeling supported by NASA JPL’s MOSAICS program, and also participate in BioMNI agent development within Chapman’s BioLab. My academic focus is on using AI to solve pressing problems in ecology, sustainability, and health.",
+  "education": [
+    {
+      "school": "Chapman University",
+      "program": "B.S. Computer Science",
+      "dates": "2023–2027"
+    },
+    {
+      "school": "Chapman University",
+      "program": "Integrated CADS M.S. (Admitted)",
+      "dates": "2025–2027"
+    }
+  ],
+  "research": [
+    {
+  "id": "res-aureum",
+  "title": "AUREUM — Species Richness Modeling (JPL MOSAICS)",
+  "desc": "As a student researcher in Dr. Josh Fisher’s lab, mentored by Dr. Gabriela Shirkey, I was responsible for the technical development of AUREUM, a multimodel ecological ML pipeline. I built the models, designed validation frameworks, applied interpretability methods like SHAP, and created the visualizations used in NASA poster presentations. The project integrates NEON biodiversity and NASA ECOSTRESS data and is supported by NASA JPL’s MOSAICS program.",
+  "tagline": "Full-stack technical contributor for modeling and visuals within NASA-supported ecological AI research."
+    },
+    {
+      "id": "res-biomni",
+      "title": "BioMNI Wrapper — Allosteric Protein AI",
+      "desc": "Within Chapman University’s BioLab, I assist in the development of the BioMNI wrapper, an AI agent framework designed to analyze protein structure and allostery. My contributions include setting up computational environments, building reproducible benchmarks, and integrating analysis modules into the pipeline. The wrapper uses AI-driven agent workflows to parse model outputs, perform RMSD calculations, and compare multi-model predictions for allosteric proteins. This work expands the scope of AI in biomedical and computational biology applications.",
+      "tagline": "Student researcher in Chapman University BioLab, contributing to agent-based AI for biomolecular research."
+    }
+  ],
+  "experience": [
+    {
+  "id": "exp-aureum",
+  "role": "Student Researcher — AUREUM (JPL MOSAICS)",
+  "org": "Chapman University, Dr. Josh Fisher’s Lab",
+  "dates": "2024–Present",
+  "bullets": [
+    "Independently built multimodel ML pipeline (NN, RF, LGBM, XGB) for species richness prediction using NEON and ECOSTRESS data.",
+    "Implemented validation frameworks at site and plot scales for rigorous ecological evaluation.",
+    "Applied SHAP and other explainability methods to highlight ecological drivers of biodiversity.",
+    "Designed and produced all figures and visualizations for NASA ECOSTRESS and MOSAICS poster presentations.",
+    "Worked under the mentorship of Dr. Gabriela Shirkey in Dr. Fisher’s lab, contributing as a full technical developer."
+  ]
+},
+    {
+      "id": "exp-biomni",
+      "role": "Student Researcher — BioMNI Wrapper",
+      "org": "Chapman University BioLab",
+      "dates": "2024–Present",
+      "bullets": [
+        "Support development of an AI agent wrapper for analyzing protein allostery and structure predictions.",
+        "Build and test benchmarks to evaluate multi-model workflows in biomolecular prediction tasks.",
+        "Integrate computational modules into agent workflows for automated analysis."
+      ]
+    },
+    {
+      "id": "exp-edrive",
+      "role": "Lead Developer — EDRIVE",
+      "org": "Fowler School of Engineering",
+      "dates": "2024–Present",
+      "bullets": [
+        "Created an eco-driving iOS app with CO₂ tracking, AI-driven route optimization, and gamified sustainability incentives.",
+        "Led a 6-person student team; established a structured GitHub repository with modular classes and detailed READMEs.",
+        "Contributed to project presentations and deliverables for the Grand Challenges Initiative (GCI) program."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "project-hoa",
+      "name": "HOA Communication Website",
+      "stack": "Next.js · PostgreSQL",
+      "desc": "Developed a secure web portal for Homeowners Associations (HOAs) featuring user authentication, announcements, maintenance requests, and an admin dashboard for approvals."
+    }
+  ],
+  "skills": [
+    "Python",
+    "Java",
+    "C++",
+    "C#",
+    "JavaScript",
+    "PyTorch",
+    "XGBoost",
+    "LGBM",
+    "Supabase",
+    "PostgreSQL",
+    "Docker"
+  ],
+  "contacts": {
+    "email": "Falhezaimi@Chapman.edu",
+    "linkedin": "https://linkedin.com/in/faresalhezaimi"
+  }
+}
