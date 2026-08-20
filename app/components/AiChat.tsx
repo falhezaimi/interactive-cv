@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useRef, useState } from "react";
-import { ArrowUp, Bot, RotateCcw, Sparkles, X } from "lucide-react";
+import { ArrowUp, RotateCcw, X } from "lucide-react";
 
 type Message = {
   role: "user" | "assistant";
@@ -16,7 +16,7 @@ type AiChatProps = {
 const welcomeMessage: Message = {
   role: "assistant",
   content:
-    "Hi—I'm the AI layer of Fares's CV. Ask me about his ECOSTRESS fire research, scientific tools, technical background, or current work.",
+    "Ask about Fares's ECOSTRESS fire research, scientific tools, technical background, or current work.",
 };
 
 const suggestions = [
@@ -122,13 +122,13 @@ export function AiChat({ open, onClose }: AiChatProps) {
         <header className="chat-header">
           <div className="chat-identity">
             <span className="chat-avatar" aria-hidden="true">
-              <Bot size={19} strokeWidth={1.8} />
+              FA
             </span>
             <div>
               <div className="chat-kicker">
-                <span className="status-dot" /> Grounded CV assistant
+                Portfolio assistant
               </div>
-              <h2 id="chat-title">Ask about Fares</h2>
+              <h2 id="chat-title">About Fares</h2>
             </div>
           </div>
           <div className="chat-actions">
@@ -142,14 +142,13 @@ export function AiChat({ open, onClose }: AiChatProps) {
         </header>
 
         <div className="chat-context">
-          <Sparkles size={15} aria-hidden="true" />
-          Answers use verified portfolio context and label preliminary research clearly.
+          Answers are limited to verified portfolio information and label preliminary research clearly.
         </div>
 
         <div className="chat-messages" ref={scrollRef} aria-live="polite">
           {messages.map((message, index) => (
             <div className={`chat-message ${message.role}`} key={`${message.role}-${index}`}>
-              <span className="message-label">{message.role === "user" ? "You" : "Fares AI"}</span>
+              <span className="message-label">{message.role === "user" ? "You" : "Assistant"}</span>
               <p>{message.content || (loading && index === messages.length - 1 ? "Thinking…" : "")}</p>
             </div>
           ))}

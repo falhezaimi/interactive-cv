@@ -4,18 +4,11 @@ import { useState } from "react";
 import {
   ArrowDownRight,
   ArrowRight,
-  Bot,
-  BriefcaseBusiness,
   Code2,
   Download,
   ExternalLink,
-  Flame,
-  GraduationCap,
   Mail,
-  MapPin,
   Menu,
-  Satellite,
-  Sparkles,
   X,
 } from "lucide-react";
 import {
@@ -58,7 +51,7 @@ export function Portfolio() {
           </span>
           <span className="brand-copy">
             <strong>Fares Alhezaimi</strong>
-            <small>Earth intelligence systems</small>
+            <small>Computer science · Earth observation</small>
           </span>
         </a>
 
@@ -72,7 +65,7 @@ export function Portfolio() {
 
         <div className="header-actions">
           <button className="header-ai" onClick={() => setChatOpen(true)}>
-            <Sparkles size={15} aria-hidden="true" /> Ask my AI
+            Portfolio assistant
           </button>
           <button
             className="mobile-menu-button"
@@ -98,7 +91,7 @@ export function Portfolio() {
                 setChatOpen(true);
               }}
             >
-              Ask my AI <Sparkles size={17} aria-hidden="true" />
+              Portfolio assistant <ArrowDownRight size={17} aria-hidden="true" />
             </button>
           </nav>
         )}
@@ -108,50 +101,45 @@ export function Portfolio() {
         <section className="hero section-shell" id="top">
           <div className="hero-copy">
             <div className="eyebrow">
-              <span className="eyebrow-line" /> Scientific software · Remote sensing · AI
+              <span className="eyebrow-line" /> Computer science · Earth observation · Scientific software
             </div>
             <h1>
-              I build tools for a
-              <span> changing planet.</span>
+              Scientific software for
+              <span> Earth observation.</span>
             </h1>
             <p className="hero-intro">{profile.introduction}</p>
             <div className="hero-actions">
               <a className="button button-primary" href="#work">
                 Explore selected work <ArrowRight size={18} aria-hidden="true" />
               </a>
-              <button className="button button-secondary" onClick={() => setChatOpen(true)}>
-                <Bot size={18} aria-hidden="true" /> Ask my AI
+              <button className="button button-secondary" onClick={printResume}>
+                <Download size={17} aria-hidden="true" /> Save résumé
               </button>
             </div>
             <div className="hero-meta">
-              <span>
-                <MapPin size={15} aria-hidden="true" /> {profile.location}
-              </span>
-              <span>
-                <span className="status-dot" /> {profile.status}
-              </span>
+              <span>{profile.location}</span>
+              <span>{profile.status}</span>
             </div>
           </div>
 
-          <div className="hero-signal" aria-label="Thermal Earth-observation visual">
-            <div className="signal-grid" />
-            <div className="orbit orbit-one" />
-            <div className="orbit orbit-two" />
-            <div className="earth-core">
-              <span className="core-coordinate">34.2°N</span>
-              <Flame size={34} strokeWidth={1.35} aria-hidden="true" />
-              <span className="core-label">THERMAL SIGNAL</span>
-            </div>
-            <div className="signal-node node-one" />
-            <div className="signal-node node-two" />
-            <div className="signal-node node-three" />
-            <div className="signal-caption top-caption">
-              <Satellite size={16} aria-hidden="true" /> ECOSTRESS / VIIRS
-            </div>
-            <div className="signal-caption bottom-caption">
-              <span>01</span> Radiance → evidence → product
-            </div>
-          </div>
+          <aside className="hero-note" aria-label="Current research focus">
+            <span>Current focus</span>
+            <p>Thermal remote sensing and scientific tools for wildfire research.</p>
+            <dl>
+              <div>
+                <dt>Sensors</dt>
+                <dd>ECOSTRESS · VIIRS</dd>
+              </div>
+              <div>
+                <dt>Methods</dt>
+                <dd>Radiance · QA/QC · Geospatial pipelines</dd>
+              </div>
+              <div>
+                <dt>Direction</dt>
+                <dd>Research workflows that become usable products</dd>
+              </div>
+            </dl>
+          </aside>
         </section>
 
         <section className="metrics section-shell" aria-label="Research scale">
@@ -168,8 +156,8 @@ export function Portfolio() {
           <SectionHeading
             index="01"
             eyebrow="Selected work"
-            title="Research engineered into usable systems."
-            description="The main story is high-resolution thermal fire research. The surrounding work shows the data infrastructure and products required to make that research useful."
+            title="Selected research and software."
+            description="Thermal fire research is the central thread, supported by cross-sensor data engineering and researcher-facing scientific tools."
           />
 
           <div className="work-grid">
@@ -178,15 +166,6 @@ export function Portfolio() {
                 <div className="work-card-topline">
                   <span>{project.type}</span>
                   <strong>{project.number}</strong>
-                </div>
-                <div className="work-icon" aria-hidden="true">
-                  {project.id === "fire-detection" ? (
-                    <Flame size={24} />
-                  ) : project.id === "matchup-dataset" ? (
-                    <Satellite size={24} />
-                  ) : (
-                    <Code2 size={24} />
-                  )}
                 </div>
                 <h3>{project.title}</h3>
                 <p>{project.description}</p>
@@ -224,8 +203,8 @@ export function Portfolio() {
             <SectionHeading
               index="02"
               eyebrow="Experience"
-              title="A computer scientist working inside real science."
-              description="I move between research questions, data pipelines, validation, interface design, and delivery—because the strongest scientific products need all five."
+              title="Research, engineering, and scientific delivery."
+              description="My work spans research questions, data pipelines, validation, interface design, and delivery."
             />
 
             <div className="timeline">
@@ -257,8 +236,8 @@ export function Portfolio() {
           <SectionHeading
             index="03"
             eyebrow="Background"
-            title="Research depth. Product instinct."
-            description="My path combines formal computer science, graduate data science, NASA Earth-observation research, and the habit of turning one-off analysis into reusable tools."
+            title="Computer science grounded in applied research."
+            description="My background combines computer science, graduate data science, NASA Earth-observation research, and reusable scientific software."
           />
 
           <div className="about-grid">
@@ -272,9 +251,7 @@ export function Portfolio() {
               </div>
 
               <div className="education-list">
-                <h3>
-                  <GraduationCap size={20} aria-hidden="true" /> Education
-                </h3>
+                <h3>Education</h3>
                 {education.map((item) => (
                   <article key={item.degree}>
                     <div>
@@ -287,9 +264,7 @@ export function Portfolio() {
               </div>
 
               <div className="presentation-list">
-                <h3>
-                  <BriefcaseBusiness size={20} aria-hidden="true" /> Selected presentations
-                </h3>
+                <h3>Selected presentations</h3>
                 {presentations.map((item) => (
                   <article key={item.venue}>
                     <span>{item.year}</span>
@@ -305,7 +280,6 @@ export function Portfolio() {
             <aside className="skills-panel">
               <div className="skills-heading">
                 <span>Technical range</span>
-                <Code2 size={21} aria-hidden="true" />
               </div>
               {skills.map((group) => (
                 <div className="skill-group" key={group.category}>
@@ -324,8 +298,8 @@ export function Portfolio() {
         <section className="contact-section" id="contact">
           <div className="section-shell contact-inner">
             <div>
-              <span className="contact-kicker">Build something meaningful</span>
-              <h2>Let’s turn complex data into a clear scientific product.</h2>
+              <span className="contact-kicker">Contact</span>
+              <h2>Open to research and product collaborations.</h2>
               <p>
                 I’m especially interested in thermal remote sensing, wildfire applications, environmental intelligence,
                 scientific software, and research collaborations with a real path to use.
@@ -335,9 +309,9 @@ export function Portfolio() {
               <a className="button button-light" href={`mailto:${profile.email}`}>
                 <Mail size={18} aria-hidden="true" /> Email me
               </a>
-              <button className="button button-outline-light" onClick={() => setChatOpen(true)}>
-                <Bot size={18} aria-hidden="true" /> Ask my AI first
-              </button>
+              <a className="button button-outline-light" href={profile.linkedin} target="_blank" rel="noreferrer">
+                LinkedIn <ExternalLink size={16} aria-hidden="true" />
+              </a>
             </div>
           </div>
         </section>
@@ -349,7 +323,7 @@ export function Portfolio() {
             <span className="brand-mark footer-mark" aria-hidden="true">
               FA<span>.</span>
             </span>
-            <p>Scientific software for Earth intelligence.</p>
+            <p>Computer science · Remote sensing · Scientific software</p>
           </div>
           <div className="footer-links">
             <a href={profile.github} target="_blank" rel="noreferrer">
@@ -369,9 +343,8 @@ export function Portfolio() {
         </div>
       </footer>
 
-      <button className="floating-ai" onClick={() => setChatOpen(true)} aria-label="Open AI CV assistant">
-        <Sparkles size={18} aria-hidden="true" />
-        <span>Ask AI</span>
+      <button className="floating-ai" onClick={() => setChatOpen(true)} aria-label="Open portfolio assistant">
+        <span>Portfolio assistant</span>
       </button>
 
       <AiChat open={chatOpen} onClose={() => setChatOpen(false)} />

@@ -78,6 +78,10 @@ function fallbackAnswer(entries: KnowledgeEntry[]) {
   ].join("\n");
 }
 
+function isCompleteAnswer(value: string) {
+  return value.length >= 40 && /[.!?)]$/.test(value);
+}
+
 function isRateLimited(ip: string) {
   const now = Date.now();
   const current = rateLimits.get(ip);
@@ -122,11 +126,12 @@ export async function POST(request: NextRequest) {
         role: message.role,
         content: message.content,
       })),
-      max_output_tokens: 420,
+      max_output_tokens: 800,
       store: false,
     });
 
-    const reply = response.output_text.trim() || fallbackAnswer(matches);
+    const generatedReply = response.output_text.trim();
+    const reply = isCompleteAnswer(generatedReply) ? generatedReply : fallbackAnswer(matches);
     return Response.json(
       { reply },
       {

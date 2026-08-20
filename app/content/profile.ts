@@ -161,19 +161,14 @@ export const education = [
 
 export const presentations = [
   {
-    year: "2026",
+    year: "2025",
     venue: "ECOSTRESS Science and Applications Team Meeting",
     note: "Preliminary active-fire research presentation and scientific-tool demonstration",
   },
   {
     year: "2026",
-    venue: "Ecological Society of America Annual Meeting",
-    note: "Research presentation · Salt Lake City, Utah",
-  },
-  {
-    year: "2026",
-    venue: "NASA Ames Research Center",
-    note: "Satellite-data processing tool demonstration",
+    venue: "Chapman University Student Scholar Symposium",
+    note: "Student research presentation",
   },
 ] as const;
 
@@ -269,8 +264,8 @@ export const knowledgeBase: KnowledgeEntry[] = [
   {
     id: "presentations",
     title: "Presentations",
-    keywords: ["talk", "presentation", "conference", "satm", "esa", "ames", "demo"],
+    keywords: ["talk", "presentation", "conference", "satm", "symposium", "chapman", "demo"],
     text:
-      "In 2026, Fares presented preliminary ECOSTRESS active-fire research and demonstrated scientific software at the ECOSTRESS Science and Applications Team Meeting. He also presented research at the Ecological Society of America Annual Meeting and demonstrated satellite-data processing tools at NASA Ames Research Center.",
+      "In 2025, Fares presented preliminary ECOSTRESS active-fire research and demonstrated scientific software at the ECOSTRESS Science and Applications Team Meeting. In 2026, he also presented at the Chapman University Student Scholar Symposium.",
   },
 ];
