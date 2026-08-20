@@ -110,17 +110,12 @@ export async function POST(request: NextRequest) {
   const apiKey = process.env.OPENAI_API_KEY;
 
   if (!apiKey) {
-    return new Response(fallbackAnswer(matches), {
-      headers: {
-        "Content-Type": "text/plain; charset=utf-8",
-        "Cache-Control": "no-store",
-      },
-    });
+    return Response.json({ reply: fallbackAnswer(matches) }, { headers: { "Cache-Control": "no-store" } });
   }
 
   try {
     const client = new OpenAI({ apiKey });
-    const stream = await client.responses.create({
+    const response = await client.responses.create({
       model: process.env.OPENAI_MODEL || "gpt-5-mini",
       instructions: `${persona}\n\nVerified CV context:\n${context}`,
       input: messages.slice(-6).map((message) => ({
@@ -129,38 +124,19 @@ export async function POST(request: NextRequest) {
       })),
       max_output_tokens: 420,
       store: false,
-      stream: true,
     });
 
-    const encoder = new TextEncoder();
-    const responseStream = new ReadableStream<Uint8Array>({
-      async start(controller) {
-        try {
-          for await (const event of stream) {
-            if (event.type === "response.output_text.delta") {
-              controller.enqueue(encoder.encode(event.delta));
-            }
-          }
-          controller.close();
-        } catch {
-          controller.error(new Error("The model stream was interrupted."));
-        }
+    const reply = response.output_text.trim() || fallbackAnswer(matches);
+    return Response.json(
+      { reply },
+      {
+        headers: {
+          "Cache-Control": "no-store",
+          "X-Content-Type-Options": "nosniff",
+        },
       },
-    });
-
-    return new Response(responseStream, {
-      headers: {
-        "Content-Type": "text/plain; charset=utf-8",
-        "Cache-Control": "no-store, no-transform",
-        "X-Content-Type-Options": "nosniff",
-      },
-    });
+    );
   } catch {
-    return new Response(fallbackAnswer(matches), {
-      headers: {
-        "Content-Type": "text/plain; charset=utf-8",
-        "Cache-Control": "no-store",
-      },
-    });
+    return Response.json({ reply: fallbackAnswer(matches) }, { headers: { "Cache-Control": "no-store" } });
   }
 }

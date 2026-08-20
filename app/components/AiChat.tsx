@@ -68,39 +68,37 @@ export function AiChat({ open, onClose }: AiChatProps) {
     setInput("");
     setLoading(true);
 
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 25_000);
+
     try {
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: conversation.slice(-8) }),
+        signal: controller.signal,
       });
 
+      const payload = (await response.json().catch(() => null)) as { error?: string; reply?: string } | null;
+
       if (!response.ok) {
-        const payload = (await response.json().catch(() => null)) as { error?: string } | null;
         throw new Error(payload?.error || "The AI assistant is temporarily unavailable.");
       }
 
-      if (!response.body) throw new Error("No response stream was returned.");
+      if (!payload?.reply?.trim()) throw new Error("The AI assistant returned an empty answer.");
 
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder();
-
-      while (true) {
-        const { value, done } = await reader.read();
-        if (done) break;
-        const chunk = decoder.decode(value, { stream: true });
-        setMessages((current) => {
-          const updated = [...current];
-          const lastMessage = updated[updated.length - 1];
-          updated[updated.length - 1] = {
-            role: "assistant",
-            content: `${lastMessage?.content || ""}${chunk}`,
-          };
-          return updated;
-        });
-      }
+      setMessages((current) => {
+        const updated = [...current];
+        updated[updated.length - 1] = { role: "assistant", content: payload.reply!.trim() };
+        return updated;
+      });
     } catch (error) {
-      const message = error instanceof Error ? error.message : "The AI assistant is temporarily unavailable.";
+      const message =
+        error instanceof DOMException && error.name === "AbortError"
+          ? "The AI assistant took too long to answer. Please try again."
+          : error instanceof Error
+            ? error.message
+            : "The AI assistant is temporarily unavailable.";
       setMessages((current) => {
         const updated = [...current];
         updated[updated.length - 1] = {
@@ -110,6 +108,7 @@ export function AiChat({ open, onClose }: AiChatProps) {
         return updated;
       });
     } finally {
+      window.clearTimeout(timeout);
       setLoading(false);
     }
   }
